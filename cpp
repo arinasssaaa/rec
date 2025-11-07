@@ -1,13 +1,21 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+#include <iostream>
 
-def count_leaves(root):
-    """Подсчитывает количество листьев в бинарном дереве."""
-    if root is None:
-        return 0
-    if root.left is None and root.right is None:
-        return 1
-    return count_leaves(root.left) + count_leaves(root.right)
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+class Solution {
+public:
+    int countLeaves(TreeNode* root) {
+        if (root == nullptr) {
+            return 0;
+        }
+        if (root->left == nullptr && root->right == nullptr) {
+            return 1;
+        }
+        return countLeaves(root->left) + countLeaves(root->right);
+    }
+};
